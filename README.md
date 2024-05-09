@@ -13,6 +13,19 @@ Node.js installed on your local machine.
 PostgreSQL installed and running.
 TypeScript installed globally (npm install -g typescript).
 
+## Technology Stack
+This project was built using the following technologies:
+
+Node.js: Used as the runtime environment for the server-side code.
+
+Express.js: Chosen as the web application framework for handling HTTP requests and routing.
+
+TypeScript: Utilized for adding static typing to JavaScript, enhancing code readability, and catching errors during development.
+
+PostgreSQL: Selected as the relational database management system for storing application data.
+
+TypeORM: Employed as the Object-Relational Mapping (ORM) library for database interactions, providing a convenient way to work with SQL databases using TypeScript/JavaScript.
+
 ## Installation
 1. Clone the repository.
 ```bash
@@ -74,3 +87,18 @@ To run the tests, execute the following command:
 ```bash
 npm test
 ```
+
+## Architecture
+The application follows a layered architecture consisting of:
+
+Presentation Layer: Handled by Express.js routes and controllers.
+
+Business Logic Layer: Managed by service classes responsible for processing requests, interacting with the database, and performing business logic operations.
+
+Data Access Layer: Managed by TypeORM entities and repositories for database interactions.
+
+## Secure Configuration
+
+Environment Variables: Sensible configuration settings such as database credentials and secret keys are stored as environment variables and not hard-coded in the application code, reducing the risk of exposure.
+
+
