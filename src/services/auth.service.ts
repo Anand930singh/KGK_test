@@ -17,7 +17,37 @@ export class AuthService {
   private static userRepository: Repository<User>
 
   static async signUp(body: UserRegistrationDto): Promise<any> {
+    if (!body.email) {
+      return {
+        status: 400,
+        data: {
+          message: "Email is required",
+        },
+      };
+    }
     const myDataSource = AppSataSource;
+
+    // Check if email already exists
+    const existingUser = await myDataSource.getRepository(User).findOne({ where: { email: body.email } });
+    if (existingUser) {
+      return {
+        status: 400,
+        data: {
+          message: "Email already exists",
+        },
+      };
+    }
+
+    // Check if userName already exist
+    const existingUsernameUser = await AppSataSource.getRepository(User).findOne({ where: { user: body.user } });
+    if (existingUsernameUser) {
+      return {
+        status: 400,
+        data: {
+          message: "Username already exists",
+        },
+      };
+    }
     const userRepository = myDataSource.getRepository(User)
     const user = userRepository.create(body)
     return userRepository.save(user);

@@ -1,8 +1,9 @@
-import { BeforeInsert, Column } from "typeorm";
+import { BeforeInsert, Column, Unique } from "typeorm";
 import bcrypt from "bcryptjs";
 const { Entity, PrimaryGeneratedColumn } = require("typeorm");
 
 @Entity()
+@Unique(['email'])
 export class User{
     @PrimaryGeneratedColumn('uuid')
     id:string;
