@@ -50,7 +50,10 @@ export class AuthService {
     }
     const userRepository = myDataSource.getRepository(User)
     const user = userRepository.create(body)
-    return userRepository.save(user);
+    userRepository.save(user);
+    return {
+      status: 200
+    };
   }
 
   static async signIn(body: LoginUserDto, res:Response): Promise<any> {

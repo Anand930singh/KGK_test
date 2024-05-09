@@ -46,3 +46,5 @@ app.listen(PORT, async () => {
     await connectDB();
     console.log(`Application running on ${PORT}`);
 });
+
+export {app}
