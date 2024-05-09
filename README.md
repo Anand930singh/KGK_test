@@ -77,6 +77,7 @@ npm run start:dev
   "password":"Password"
 }
 ```
+/auth/signout - Logout 
 
 /dashboard - This route can be acessed only if the user is loggedin
 
