@@ -35,6 +35,12 @@ app.post('/auth/signin', async (req, res) => {
     res.json(newUser);
 })
 
+//signout
+app.get('/auth/signout', verifyUser, async (req, res) => {
+    const msg = await AuthService.signout(res)
+    res.json(msg);
+})
+
 //dashboard
 app.get('/dashboard', verifyUser, async (req, res) => {
     res.json("hello from dashboard")

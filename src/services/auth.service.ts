@@ -56,6 +56,17 @@ export class AuthService {
     };
   }
 
+  static async signout(res: Response): Promise<any> {
+    // Clear the token by setting an empty cookie with an expired date
+    res.clearCookie("token");
+    return {
+      status: 200,
+      data: {
+        message: "Logout Successful",
+      },
+    };
+  }
+
   static async signIn(body: LoginUserDto, res:Response): Promise<any> {
     if (!body) {
       return {
@@ -71,7 +82,7 @@ export class AuthService {
       const isMatch = await bcrypt.compare(body.password, user.password);
       if (isMatch) {
         const token = jwt.sign({ "user":user.user, "email":user.email }, JWTSECRET||"kisuydhigwyfejwsh", { expiresIn: '1h' });
-        res.cookie("token",token,{maxAge:20000, httpOnly:true})
+        res.cookie("token",token,{maxAge:2000000, httpOnly:true})
         return {
           status: 200,
           data: {
